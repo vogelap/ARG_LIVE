@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdf837b3-550f-4bbd-ab41-4758fa986312" name="Changes" comment="" />
+    <list default="true" id="cdf837b3-550f-4bbd-ab41-4758fa986312" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/LIVE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LIVE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,15 +13,50 @@
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/public_html/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../php/php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../php/php.exe">
+    <include_path>
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/public_html/vendor/composer" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/public_html/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/public_html/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/public_html/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/public_html/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/public_html/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/public_html/vendor/doctrine/instantiator" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2z2y8VTPdzI2USFVAnRl0jwlrMg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,12 +67,19 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\andre\\AppData\\Roaming\\JetBrains\\PhpStorm2025.1\\plugins\\Shell Script\\shellcheck.exe",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/public_html/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -50,6 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750943303299</updated>
       <workItem from="1750943304793" duration="16000" />
+      <workItem from="1750943508619" duration="171000" />
     </task>
     <servers />
   </component>
