@@ -1,0 +1,17 @@
+{
+    "name": "Default Admin",
+    "is_admin_theme": false,
+    "settings_json": {
+        "--admin-primary": "#8e44ad",
+        "--admin-primary-hover": "#732d91",
+        "--admin-bg": "#2c3e50",
+        "--admin-surface": "#34495e",
+        "--admin-text": "#ecf0f1",
+        "--admin-text-muted": "#bdc3c7",
+        "--admin-border": "#46627f",
+        "--admin-success": "#27ae60",
+        "--admin-danger": "#c0392b",
+        "--admin-danger-text": "#e74c3c",
+        "--admin-danger-bg": "rgba(192, 57, 43, 0.1)"
+    }
+}

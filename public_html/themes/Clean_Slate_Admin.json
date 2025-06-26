@@ -1,0 +1,17 @@
+{
+    "name": "Clean Slate Admin",
+    "is_admin_theme": true,
+    "settings_json": {
+        "--admin-primary": "#2980b9",
+        "--admin-primary-hover": "#2471a3",
+        "--admin-bg": "#f8f9fa",
+        "--admin-surface": "#ffffff",
+        "--admin-text": "#212529",
+        "--admin-text-muted": "#6c757d",
+        "--admin-border": "#dee2e6",
+        "--admin-success": "#28a745",
+        "--admin-danger": "#dc3545",
+        "--admin-danger-text": "#721c24",
+        "--admin-danger-bg": "#f8d7da"
+    }
+}

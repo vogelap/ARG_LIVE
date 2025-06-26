@@ -1,0 +1,28 @@
+[24-Jun-2025 22:30:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php:8
+Stack trace:
+#0 /home/customer/www/arg.agalacticevent.com/public_html/includes/session.php(3): require_once()
+#1 /home/customer/www/arg.agalacticevent.com/public_html/public/gatekeeper.php(7): require_once('/home/customer/...')
+#2 /home/customer/www/arg.agalacticevent.com/public_html/public/index.php(4): require_once('/home/customer/...')
+#3 {main}
+  thrown in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8
+[24-Jun-2025 22:34:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php:8
+Stack trace:
+#0 /home/customer/www/arg.agalacticevent.com/public_html/includes/session.php(3): require_once()
+#1 /home/customer/www/arg.agalacticevent.com/public_html/public/gatekeeper.php(7): require_once('/home/customer/...')
+#2 /home/customer/www/arg.agalacticevent.com/public_html/public/index.php(4): require_once('/home/customer/...')
+#3 {main}
+  thrown in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8
+[24-Jun-2025 22:34:12 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php:8
+Stack trace:
+#0 /home/customer/www/arg.agalacticevent.com/public_html/includes/session.php(3): require_once()
+#1 /home/customer/www/arg.agalacticevent.com/public_html/public/login.php(4): require_once('/home/customer/...')
+#2 {main}
+  thrown in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8
+[24-Jun-2025 22:36:43 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php:8
+Stack trace:
+#0 /home/customer/www/arg.agalacticevent.com/public_html/includes/session.php(8): require_once()
+#1 /home/customer/www/arg.agalacticevent.com/public_html/public/login.php(5): require_once('/home/customer/...')
+#2 {main}
+  thrown in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8
+[24-Jun-2025 22:38:19 UTC] PHP Warning:  require_once(/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php): Failed to open stream: No such file or directory in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8
+[24-Jun-2025 22:43:47 UTC] PHP Warning:  require_once(/home/customer/www/arg.agalacticevent.com/public_html/includes/../config.php): Failed to open stream: No such file or directory in /home/customer/www/arg.agalacticevent.com/public_html/includes/boot.php on line 8

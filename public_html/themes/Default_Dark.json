@@ -1,0 +1,18 @@
+{
+    "name": "Default Dark",
+    "is_admin_theme": false,
+    "settings_json": {
+        "--primary-color": "#00aaff",
+        "--primary-hover-color": "#0088cc",
+        "--background-color": "#121212",
+        "--surface-color": "#1e1e1e",
+        "--text-color": "#e0e0e0",
+        "--text-muted-color": "#a0a0a0",
+        "--border-color": "#333333",
+        "--success-color": "#28a745",
+        "--error-color": "#dc3545",
+        "--danger-bg": "rgba(220, 53, 69, 0.1)",
+        "--danger-border": "rgba(220, 53, 69, 0.5)",
+        "--danger-text": "#f8d7da"
+    }
+}
