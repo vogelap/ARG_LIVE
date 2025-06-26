@@ -1,56 +1,34 @@
 <?php
+// File: config.php (Modified)
+
 // Composer Autoloader for external libraries like PHPMailer
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/includes/helpers.php';
-/**
- * =================================================================
- * DATABASE CONFIGURATION
- * =================================================================
- */
 
-// -----------------------------------------------------------------
-// STEP 1: Enter your database credentials below.
-// -----------------------------------------------------------------
+// --- Configuration Loading ---
+$config_path = __DIR__ . '/config.ini';
+if (!file_exists($config_path)) {
+    die("CRITICAL ERROR: Configuration file 'config.ini' not found. Please create it from the template.");
+}
+$config = parse_ini_file($config_path, true);
 
-$db_host = 'localhost';                  // This is correct.
-$db_name = 'dbma3ztscdzkgc';         // REPLACE THIS with your real database name.
-$db_user = 'u8rakddhc8bp0';     // REPLACE THIS with your real database username.
-$db_pass = 'pdrx263xi2rd';     // REPLACE THIS with the new password you just set.
-$db_charset = 'utf8mb4';
+if ($config === false) {
+    die("CRITICAL ERROR: Could not parse config.ini. Please check its format.");
+}
 
-// Database Configuration
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'u8rakddhc8bp0');
-define('DB_PASSWORD', 'pdrx263xi2rd');
-define('DB_NAME', 'dbma3ztscdzkgc');
+// --- Database Constants ---
+define('DB_SERVER', $config['database']['DB_HOST']);
+define('DB_USERNAME', $config['database']['DB_USER']);
+define('DB_PASSWORD', $config['database']['DB_PASS']);
+define('DB_NAME', $config['database']['DB_NAME']);
 
-// Site Configuration - IMPORTANT: No trailing slash here
-define('SITE_URL', 'https://arg.agalacticevent.com');
+// --- Site Constants ---
+// Remove trailing slashes to prevent issues with URL construction
+define('SITE_URL', rtrim($config['site']['SITE_URL'], '/'));
 define('ROOT_PATH', __DIR__);
 
-// Timezone
-date_default_timezone_set('America/New_York');
+// --- Timezone ---
+date_default_timezone_set($config['site']['TIMEZONE'] ?? 'UTC');
 
-/**
- * =================================================================
- * PDO CONNECTION LOGIC (No edits needed below this line)
- * =================================================================
- */
-
-// Data Source Name (DSN) - specifies how to connect.
-$dsn = "mysql:host=$db_host;dbname=$db_name;charset=$db_charset";
-
-// Connection options for security, error handling, and data format.
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $db_user, $db_pass, $options);
-} catch (PDOException $e) {
-    error_log('Database Connection Failed: ' . $e->getMessage());
-    die("HTTP 500 - Internal Server Error: Could not connect to the database.");
-}
+// This file no longer creates the PDO object.
+// The connection is now handled in includes/db.php, which is loaded by init.php.
 ?>

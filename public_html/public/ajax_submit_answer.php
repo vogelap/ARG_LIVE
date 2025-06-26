@@ -4,8 +4,15 @@
 ini_set('display_errors', 0);
 error_reporting(0);
 
-require_once __DIR__ . '/../includes/session.php';
+// Use the new centralized initializer
+require_once __DIR__ . '/../includes/init.php';
+
 header('Content-Type: application/json');
+
+$response = ['success' => false, 'message' => 'An unknown error occurred.'];
+
+// Begin the transaction
+$mysqli->begin_transaction();
 
 try {
     require_login(); 
@@ -13,7 +20,6 @@ try {
         throw new Exception(get_text('ajax_error_security_token'));
     }
 
-    require_once __DIR__ . '/../includes/db.php';
     require_once __DIR__ . '/../includes/classes/GameManager.php';
     require_once __DIR__ . '/../includes/classes/Puzzle.php';
 
@@ -37,25 +43,33 @@ try {
         $next_puzzles = $gameManager->recordSolve($player_id, $puzzle_id);
         $is_game_complete = $gameManager->hasPlayerCompletedGame($player_id);
 
-        // MODIFIED: Added story_text to the success response
-        echo json_encode([
+        // All operations succeeded, commit the transaction
+        $mysqli->commit();
+
+        $response = [
             'success' => true,
             'message' => get_text('ajax_answer_correct'),
             'next_puzzles' => $next_puzzles,
             'game_complete' => $is_game_complete,
             'success_media_url' => $puzzle['success_media_url'],
             'story_text' => $puzzle['story_text']
-        ]);
+        ];
     } else {
-        echo json_encode([
+        // Answer is incorrect, no DB changes were made, so we can safely rollback (or just do nothing)
+        $mysqli->rollback();
+        $response = [
             'success' => false, 
             'message' => get_text('ajax_answer_incorrect'),
             'failure_media_url' => $puzzle['failure_media_url']
-        ]);
+        ];
     }
 
 } catch (Exception $e) {
+    // An error occurred, roll back any changes
+    $mysqli->rollback();
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    $response = ['success' => false, 'message' => $e->getMessage()];
 }
+
+echo json_encode($response);
 exit;
