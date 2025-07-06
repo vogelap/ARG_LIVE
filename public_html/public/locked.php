@@ -81,7 +81,7 @@ include __DIR__ . '/../templates/header.php';
 
         if (distance < 0) {
             clearInterval(timerInterval);
-            countdownElement.innerHTML = "<h2>The game is now live! Refreshing...</h2>";
+            countdownElement.innerHTML = "<h2>The experience is now live! Refreshing...</h2>";
             setTimeout(() => window.location.reload(), 2000);
             return;
         }
