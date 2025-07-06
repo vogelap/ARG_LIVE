@@ -9,9 +9,7 @@ require_once __DIR__ . '/../includes/session.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($page_title ?? (defined('SITE_NAME') ? SITE_NAME : 'ARG Game')); ?></title>
-    
-    <link rel="stylesheet" href="/public/assets/css/style.css?v=<?php echo time(); ?>">
-    
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/public/assets/css/style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <style>

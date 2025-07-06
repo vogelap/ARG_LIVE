@@ -1,13 +1,6 @@
 <?php
-/**
- * This file now only contains session-related helper functions.
- * All application setup is handled by init.php.
- */
-
-// Load the master initializer.
-require_once __DIR__ . '/init.php';
-
-// --- Session Helper Functions ---
+// This single file now handles all session setup and helper functions.
+require_once __DIR__ . '/boot.php';
 
 function is_logged_in() {
     return isset($_SESSION['user_id']);
@@ -41,3 +34,8 @@ function generate_csrf_token() {
 function validate_csrf_token($token) {
     return !empty($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
 }
+
+// Load site text after session has started and db connection is available
+require_once __DIR__ . '/db.php';
+load_site_text($mysqli);
+?>

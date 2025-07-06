@@ -90,7 +90,7 @@ function is_writable_in_path($file, $path) {
                 <div class="form-group">
                     <label for="site_url">Site URL</label>
                     <input type="url" name="site_url" id="site_url" value="<?php echo htmlspecialchars(rtrim('http://' . $_SERVER['HTTP_HOST'] . str_replace('/install/index.php', '', $_SERVER['PHP_SELF']), '/')); ?>" required>
-                    <small>The full URL to your project root, without a trailing slash.</small>
+                    <small>The full URL to your project root, without a trailing slash. Avoid using "localhost" for production.</small>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -107,7 +107,7 @@ function is_writable_in_path($file, $path) {
             <h2>Installation Complete!</h2>
             <div class="success-box">
                 <p>Congratulations! The ARG Framework has been successfully installed.</p>
-                <p><strong>For your security, please DELETE the entire `install` directory now.</strong></p>
+                <p><strong>For site security, please DELETE the entire `install` directory and INSTALL.bat & INSTALL.sh from the directory now.</strong></p>
             </div>
             <h3>Next Steps:</h3>
             <a href="../public/" class="btn">Go to Public Site</a>

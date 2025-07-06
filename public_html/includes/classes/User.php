@@ -8,60 +8,47 @@ class User {
         $this->mysqli = $mysqli;
     }
 
-    /**
-     * NEW: Authenticates a user with an email and password.
-     * @param string $email The user's email.
-     * @param string $password The user's plaintext password.
-     * @return array|false The user data array on success, false on failure.
-     */
-    public function authenticate($email, $password) {
-        if (empty($email) || empty($password)) {
-            return false;
-        }
-        $stmt = $this->mysqli->prepare("SELECT id, username, password, is_admin, has_seen_intro FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-            if (password_verify($password, $user['password'])) {
-                unset($user['password']); // For security, don't return the hash
-                return $user;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * UPDATED: Finds a user by ID and returns all necessary session data.
-     * @param int $id The user's ID.
-     * @return array|null The user data array or null if not found.
-     */
-    public function find($id) {
-        $stmt = $this->mysqli->prepare("SELECT id, username, email, is_admin, has_seen_intro FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-    
     // --- Session-based Methods ---
 
     public static function hasSeenIntro() {
         return isset($_SESSION['has_seen_intro']) && $_SESSION['has_seen_intro'] === true;
     }
 
+    /**
+     * MODIFIED: This is now a non-static method that updates the database and the session.
+     */
     public function markIntroAsSeen() {
         if (!isset($_SESSION['user_id'])) {
             return;
         }
         $user_id = $_SESSION['user_id'];
+
+        // Update the session to prevent re-checks during this session
         $_SESSION['has_seen_intro'] = true;
+
+        // Update the database to make it permanent
         $stmt = $this->mysqli->prepare("UPDATE users SET has_seen_intro = 1 WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
     }
 
-    // --- Token Methods ---
+
+    // --- Login and Token Methods ---
+
+    public static function login($mysqli, $email, $password) {
+        // MODIFIED: Fetches has_seen_intro
+        $stmt = $mysqli->prepare("SELECT id, username, password, is_admin, has_seen_intro FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            }
+        }
+        return false;
+    }
 
     public function generateLoginToken($user_id) {
         $token = bin2hex(random_bytes(32));
@@ -85,19 +72,19 @@ class User {
         return false;
     }
     
-    public function updateLastLogin($user_id) {
-        $stmt = $this->mysqli->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-    }
-    
     public function findByEmail($email) {
         $stmt = $this->mysqli->prepare("SELECT id, username, email, is_admin FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
-
+    
+    public function updateLastLogin($user_id) {
+        $stmt = $this->mysqli->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+    
     // --- User Management & Password Reset Methods ---
 
     public function generatePasswordResetToken($email) {
@@ -211,6 +198,13 @@ class User {
             return false;
         }
     }
+
+    public function find($id) {
+        $stmt = $this->mysqli->prepare("SELECT id, username, email, is_admin FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
     
     public function getUsername($user_id) {
         $stmt = $this->mysqli->prepare("SELECT username FROM users WHERE id = ?");
@@ -221,6 +215,7 @@ class User {
     }
 
     public function getAll() {
+        // MODIFIED: Added u.last_login to the SELECT statement
         $query = "SELECT u.id, u.username, u.email, u.created_at, u.last_login, u.is_admin, COUNT(pp.id) as solved_count 
                   FROM users u 
                   LEFT JOIN player_progress pp ON u.id = pp.player_id AND pp.status = 'solved' 
