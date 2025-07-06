@@ -1,5 +1,5 @@
 <?php
-// File: create_admin.php (Modified)
+// File: create_admin.php
 // THIS SCRIPT IS CALLED BY INSTALL.BAT TO SECURELY CREATE THE FIRST ADMIN USER.
 
 // Suppress warnings for a cleaner command-line experience

@@ -23,25 +23,20 @@ DROP TABLE IF EXISTS `site_text`;
 -- CREATE TABLES
 -- ================================================================= --
 
---
--- Table structure for table `users`
---
-
+-- Unified `users` table for both players and administrators
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL DEFAULT 'player',
-  `score` int(11) NOT NULL DEFAULT 0,
-  `password_reset_token` varchar(64) DEFAULT NULL,
-  `password_reset_expires` datetime DEFAULT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_login` timestamp NULL DEFAULT NULL,
+  `has_seen_intro` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- `puzzles` table
 CREATE TABLE `puzzles` (
@@ -154,21 +149,6 @@ CREATE TABLE `site_text` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`text_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Table structure for table `solved_puzzles`
---
-
-CREATE TABLE `solved_puzzles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `puzzle_id` int(11) NOT NULL,
-  `solved_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_puzzle_unique` (`user_id`,`puzzle_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `solved_puzzles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- ================================================================= --
