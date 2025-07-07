@@ -1,4 +1,0 @@
-[24-Jun-2025 22:30:46 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/arg.agalacticevent.com/public_html/config.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/arg.agalacticevent.com/public_html/index.php:8
-Stack trace:
-#0 {main}
-  thrown in /home/customer/www/arg.agalacticevent.com/public_html/index.php on line 8
